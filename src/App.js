@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.scss";
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
@@ -23,7 +23,11 @@ function App() {
     const user = await response.json();
     setUser(user);
     setIsLoading(false);
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
 
   let content = <p>User was not found</p>;
 
@@ -34,21 +38,14 @@ function App() {
       </p>
     );
   }
-
   if (error) {
     content = <p>{error}</p>;
   }
-
   if (isLoading) {
     content = <p>The data is being loaded</p>;
   }
 
-  return (
-    <div className="App">
-      <button onClick={fetchUser}>Fetch</button>
-      {content}
-    </div>
-  );
+  return <div className="App">{content}</div>;
 }
 
 export default App;
