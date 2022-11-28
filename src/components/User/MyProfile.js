@@ -1,5 +1,6 @@
+import { Card, CircularProgress } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
-import "./MyProfile.scss";
+import styles from "./MyProfile.module.scss";
 
 export const MyProfile = (props) => {
   const [user, setUser] = useState(null);
@@ -22,28 +23,28 @@ export const MyProfile = (props) => {
 
     const user = await response.json();
     setUser(user);
-    setIsLoading(false);
+    // setIsLoading(false);
   }, []);
 
   useEffect(() => {
     fetchUser();
   }, [fetchUser]);
-
-  let content = <p>User was not found</p>;
-
+  
   if (user) {
-    content = (
-      <p>
-        {user.firstName} {user.secondName}
-      </p>
+    return (
+      <>
+        <Card className={styles.header}>
+          <h2>{user.firstName} {user.secondName}</h2>
+          <h3>{user.position}</h3>
+          <p className={styles.location}>{user.location}</p>
+        </Card>
+        <Card className={styles.generalInfo}>
+          <h2>General information</h2>
+          <p>{user.generalInfo}</p>
+        </Card>
+      </>
     );
   }
-  if (error) {
-    content = <p>{error}</p>;
-  }
-  if (isLoading) {
-    content = <p>The data is being loaded</p>;
-  }
 
-  return <div>{content}</div>;
+  return null;
 };
