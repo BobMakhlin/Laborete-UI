@@ -1,12 +1,17 @@
 body {
   padding: 1rem;
-  margin: 2rem auto;
+  margin: 0 auto;
   width: 50rem;
   max-width: 95%;
   background-color: #2A2D34;
+  box-sizing: border-box;
 }
 
 #root,
 .App {
   width: 100%;
+}
+
+html, body, .App, #root {
+  height: 100%;
 }

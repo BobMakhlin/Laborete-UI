@@ -1,4 +1,4 @@
-import { Card, CircularProgress } from "@mui/material";
+import { Card, LinearProgress } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import styles from "./MyProfile.module.scss";
 
@@ -23,13 +23,19 @@ export const MyProfile = (props) => {
 
     const user = await response.json();
     setUser(user);
-    // setIsLoading(false);
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
     fetchUser();
   }, [fetchUser]);
-  
+
+  if (isLoading) {
+    return <div className={styles.loadingBlock}>
+      <LinearProgress className={styles.loadingProgress} />
+    </div>
+  }
+
   if (user) {
     return (
       <>
