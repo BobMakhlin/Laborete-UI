@@ -1,4 +1,4 @@
-import { Card, LinearProgress } from "@mui/material";
+import { Alert, Card, LinearProgress } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import styles from "./MyProfile.module.scss";
 
@@ -45,7 +45,7 @@ export const MyProfile = (props) => {
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <Alert severity="error">{error}</Alert>;
   }
 
   if (user) {
