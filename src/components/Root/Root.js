@@ -6,14 +6,18 @@ import styles from "./Root.module.css";
 export const Root = (props) => {
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box className={styles.menu} sx={{ flexGrow: 1 }}>
         <AppBar position="static" color="primary">
           <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              LABORETE
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1 }}
+            >
+              <NavLink to={"/"}>LABORETE</NavLink>
             </Typography>
 
-            <Box className={styles.pageButtons} sx={{ display: "flex" }}>
+            <Box sx={{ display: "flex" }}>
               <NavLink to={"/companies"}>
                 <Button sx={{ my: 2, color: "white", display: "block" }}>
                   Companies
