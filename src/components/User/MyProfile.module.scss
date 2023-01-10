@@ -1,0 +1,15 @@
+.header,
+.generalInfo {
+  margin: 1em 0;
+  padding: 0 0.5em;
+}
+
+.loadingBlock {
+  height: 100%;
+}
+
+.loadingProgress {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
