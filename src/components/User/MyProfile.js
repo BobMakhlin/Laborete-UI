@@ -45,7 +45,11 @@ export const MyProfile = (props) => {
   }
 
   if (error) {
-    return <Alert severity="error">{error}</Alert>;
+    return (
+      <Alert sx={{ my: 2 }} severity="error">
+        {error}
+      </Alert>
+    );
   }
 
   if (user) {
